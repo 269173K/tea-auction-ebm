@@ -55,13 +55,3 @@ To redeploy after changes, run the `az webapp up` line again.
 - Weather: NASA POWER (Nuwara Eliya, Kandy, Ratnapura)
 
 The raw source documents are not redistributed; only the extracted figures are, with citations.
-
-## Demo video outline (3-5 minutes)
-
-1. (0:00) The problem: monthly auction prices by elevation; who uses them.
-2. (0:40) Open the app. Pick High grown: October 2026 forecast and the "Why" chart.
-3. (1:30) Switch to Low grown; point out how the drivers differ.
-4. (2:00) What-if: set the month to June and show the seasonal dip; open "What the model learned" for the month.
-5. (2:45) What-if: raise rainfall to +6 mm/day; the forecast and the rainfall bar update.
-6. (3:20) The accuracy footer: how far to trust it (vs the naive forecast).
-7. (3:50) Close: data sources and what would improve it.
