@@ -14,6 +14,23 @@ python app/app.py          # open http://127.0.0.1:5000
 Optional checks (Node.js 18+): `node app/test_parity.js` (browser twin = Python model)
 and `node app/test_render.js` (page renders without errors).
 
+## Deploy to Azure App Service (free F1 tier)
+
+Needs the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli). Run from a fresh
+clone of this repo (no `.venv` folder in it, so it isn't uploaded):
+
+```bash
+az login
+az webapp up --name tea-outlook-269173k --resource-group tea-outlook-rg \
+  --location centralindia --runtime "PYTHON:3.12" --sku F1
+az webapp config set --name tea-outlook-269173k --resource-group tea-outlook-rg \
+  --startup-file "gunicorn --bind=0.0.0.0:8000 --timeout 600 --workers 1 --threads 4 application:app"
+```
+
+The site is then at `https://tea-outlook-269173k.azurewebsites.net`. Logs:
+`az webapp log tail --name tea-outlook-269173k --resource-group tea-outlook-rg`.
+To redeploy after changes, run the `az webapp up` line again.
+
 ## Layout
 
 | Path | Contents |

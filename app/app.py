@@ -17,10 +17,26 @@ sys.path.insert(0, str(ROOT / "src"))
 import ebm  # noqa: F401  (needed to unpickle the EBMRegressor class)
 import train_evaluate as T
 
-app = Flask(__name__, static_folder="static", template_folder="templates")
-MODEL = pickle.load(open(ROOT / "models" / "ebm_deploy.pkl", "rb"))
+app = Flask(__name__, root_path=str(Path(__file__).resolve().parent),
+            static_folder="static", template_folder="templates")
 BUNDLE = json.load(open(ROOT / "app" / "static" / "model_bundle.json"))
 _lab = T.load_panel().dropna(subset=["target"])
+
+
+def _load_model():
+    """Load the trained model. If the pickle can't be read on this machine (e.g. a cloud
+    host with different NumPy/Python versions), refit the identical deployment model from
+    the committed data and tuned hyperparameters; the fit is deterministic and takes seconds."""
+    try:
+        return pickle.load(open(ROOT / "models" / "ebm_deploy.pkl", "rb"))
+    except Exception as exc:  # noqa: BLE001
+        print(f"Model pickle not loadable here ({exc!r}); refitting from data.", flush=True)
+        best = json.load(open(ROOT / "outputs" / "tables" / "best_params.json"))["EBM"]
+        rows = T.fit_rows(_lab)
+        return T.make_model("EBM", best, T.FEATURES).fit(rows[T.FEATURES], rows["target"].values)
+
+
+MODEL = _load_model()
 BACKGROUND = T.fit_rows(_lab)[T.FEATURES].values.astype(float)
 FEATURES = T.FEATURES
 ELEV_CODE = T.ELEV_CODE

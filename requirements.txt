@@ -1,5 +1,6 @@
-numpy>=1.26
+numpy>=2.0
 pandas>=2.1
 scikit-learn>=1.4
 matplotlib>=3.8
 flask>=3.0
+gunicorn>=22.0
