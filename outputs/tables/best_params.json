@@ -1,0 +1,26 @@
+{
+ "EBM": {
+  "learning_rate": 0.01,
+  "max_rounds": 30,
+  "max_leaves": 2,
+  "max_bins": 16,
+  "min_samples_leaf": 10,
+  "interactions": 0,
+  "outer_bags": 16,
+  "early_stopping_rounds": 1000000000
+ },
+ "Ridge": {
+  "alpha": 100
+ },
+ "RandomForest": {
+  "max_depth": 3,
+  "min_samples_leaf": 5,
+  "max_features": 0.33
+ },
+ "HistGradBoost": {
+  "learning_rate": 0.03,
+  "max_depth": 2,
+  "max_iter": 100,
+  "min_samples_leaf": 10
+ }
+}

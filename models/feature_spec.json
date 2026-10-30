@@ -1,0 +1,70 @@
+{
+ "features": [
+  "elevation",
+  "next_month",
+  "ret_1m",
+  "ret_12m",
+  "dev_12m_mean",
+  "premium_vs_total",
+  "fx_chg_3m",
+  "brent_chg_3m",
+  "world_tea_chg_3m",
+  "ceylon_premium",
+  "rain_anom_2m",
+  "temp_anom",
+  "solar_anom",
+  "fertilizer_ban"
+ ],
+ "driver_features": [
+  "elevation",
+  "next_month",
+  "fx_chg_3m",
+  "brent_chg_3m",
+  "world_tea_chg_3m",
+  "ceylon_premium",
+  "rain_anom_2m",
+  "temp_anom",
+  "solar_anom",
+  "fertilizer_ban"
+ ],
+ "categorical": [
+  "elevation",
+  "next_month",
+  "fertilizer_ban"
+ ],
+ "elevation_code": {
+  "high": 0,
+  "medium": 1,
+  "low": 2
+ },
+ "split": {
+  "train_all": {
+   "rows": 177,
+   "from": "2019-02",
+   "to": "2023-12"
+  },
+  "train_used": {
+   "rows": 129,
+   "from": "2019-02",
+   "to": "2023-12"
+  },
+  "validation": {
+   "rows": 54,
+   "from": "2023-07",
+   "to": "2024-12"
+  },
+  "test": {
+   "rows": 63,
+   "from": "2025-01",
+   "to": "2026-09"
+  },
+  "break_excluded": [
+   "2022-03",
+   "2023-06"
+  ]
+ },
+ "break": [
+  "2022-03",
+  "2023-06"
+ ]
+}

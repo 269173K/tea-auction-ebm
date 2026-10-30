@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tea Auction Outlook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<!--PAGE-->
+<header class="masthead">
+  <div class="wrap">
+    <h1>Colombo tea auction outlook</h1>
+    <p class="lede">Next month's average auction price for each elevation, with the reasons behind it. <span id="data-through"></span></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="elevations" aria-label="Choose an elevation">
+    <div class="elev-row" role="radiogroup" id="elev-row"></div>
+  </section>
+
+  <div class="layout">
+    <aside class="inputs" aria-label="Conditions">
+      <div class="inputs-head">
+        <h2>Conditions going into the month</h2>
+        <button type="button" class="link-btn" id="reset">Use latest data</button>
+      </div>
+      <label class="field month-field">
+        <span>Month to forecast</span>
+        <select id="month"></select>
+      </label>
+      <div id="groups"></div>
+      <label class="field fx-field">
+        <span>Rupees per US dollar next month <em>(for the rupee price only)</em></span>
+        <input type="number" id="fx" step="0.5" min="100" max="600">
+      </label>
+    </aside>
+
+    <section class="results" aria-live="polite">
+      <div class="forecast">
+        <p class="forecast-title" id="fc-title"></p>
+        <div class="forecast-figures">
+          <p class="price"><span class="currency">Rs</span><span id="fc-lkr"></span><span class="per">/kg</span></p>
+          <p class="change" id="fc-change"></p>
+        </div>
+        <p class="forecast-sub" id="fc-sub"></p>
+      </div>
+
+      <div class="panel">
+        <h3>Why the model expects this</h3>
+        <p class="panel-note">Each bar is how much one condition moves the forecast away from the average month, in percentage points. They add up exactly to the forecast.</p>
+        <div id="why"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Price over the last three years</h3>
+        <div id="history"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>What the model learned</h3>
+          <select id="shape-feature" aria-label="Condition to show"></select>
+        </div>
+        <p class="panel-note" id="shape-note"></p>
+        <div id="shape"></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="honesty" id="honesty"></footer>
+</main>
+<!--BUNDLE-->
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
